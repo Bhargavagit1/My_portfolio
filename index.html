@@ -1,0 +1,2363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bhargava Sai Bonam | Executive Digital Portfolio</title>
+  <meta name="description" content="Executive portfolio of Bhargava Sai Bonam, bridging the gap between industrial operations, advanced analytics, and digital transformation to drive business excellence.">
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ----------------------------------------------------
+       1. DESIGN SYSTEM & CSS VARIABLES
+       ---------------------------------------------------- */
+    :root {
+      --bg-base: #06070a;
+      --bg-surface: rgba(13, 16, 24, 0.7);
+      --bg-surface-hover: rgba(22, 27, 38, 0.8);
+      --border-color: rgba(255, 255, 255, 0.05);
+      --border-focus: rgba(0, 242, 254, 0.4);
+      
+      --color-primary: #00f2fe; /* Electric Teal */
+      --color-secondary: #4facfe; /* Deep Indigo */
+      --color-accent: #f39c12; /* Warm Gold */
+      --color-accent-rgb: 243, 156, 18;
+      --color-text-primary: #f8fafc;
+      --color-text-secondary: #94a3b8;
+      --color-text-muted: #64748b;
+      
+      --gradient-brand: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+      --gradient-glow: radial-gradient(circle, rgba(0, 242, 254, 0.15) 0%, rgba(79, 172, 254, 0) 70%);
+      
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      
+      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-fast: all 0.2s ease;
+    }
+
+    /* ----------------------------------------------------
+       2. BASE RESET & SCROLLBAR
+       ---------------------------------------------------- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--color-text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Custom Premium Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-base);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      border: 2px solid var(--bg-base);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gradient-brand);
+    }
+
+    /* Ambient Lighting Glow Background Elements */
+    .ambient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .ambient-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.08) 0%, rgba(79, 172, 254, 0) 70%);
+      border-radius: 50%;
+      top: -200px;
+      right: -100px;
+      filter: blur(80px);
+      animation: float-slow 15s infinite alternate;
+    }
+
+    .ambient-glow-2 {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(243, 156, 18, 0.04) 0%, rgba(243, 156, 18, 0) 70%);
+      border-radius: 50%;
+      bottom: -150px;
+      left: -100px;
+      filter: blur(80px);
+      animation: float-slow 20s infinite alternate-reverse;
+    }
+
+    @keyframes float-slow {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(50px, 50px) scale(1.1); }
+    }
+
+    /* Dynamic interactive spotlight grid */
+    .spotlight-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: -1;
+      background: radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.015), transparent 40%);
+    }
+
+    /* ----------------------------------------------------
+       3. REUSABLE COMPONENTS & UTILITIES
+       ---------------------------------------------------- */
+    section {
+      padding: 120px 8% 100px 8%;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-header {
+      margin-bottom: 60px;
+      max-width: 700px;
+    }
+
+    .section-label {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-primary);
+      display: inline-block;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .section-label::after {
+      content: '';
+      position: absolute;
+      width: 30px;
+      height: 1px;
+      background: var(--gradient-brand);
+      right: -40px;
+      top: 50%;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-subtitle {
+      color: var(--color-text-secondary);
+      margin-top: 15px;
+      font-size: 1.1rem;
+      font-weight: 300;
+    }
+
+    .glass-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: var(--transition-smooth);
+    }
+
+    .glass-card:hover {
+      background: var(--bg-surface-hover);
+      border-color: rgba(255, 255, 255, 0.08);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Reveal animation utilities */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-100 { transition-delay: 0.1s; }
+    .delay-200 { transition-delay: 0.2s; }
+    .delay-300 { transition-delay: 0.3s; }
+    .delay-400 { transition-delay: 0.4s; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 28px;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      background: var(--gradient-brand);
+      color: #000;
+      border: none;
+      box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--color-text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    /* ----------------------------------------------------
+       4. NAVIGATION BAR (FLOATING GLASS)
+       ---------------------------------------------------- */
+    header {
+      position: fixed;
+      top: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 48px);
+      max-width: 1000px;
+      z-index: 1000;
+      transition: var(--transition-smooth);
+    }
+
+    .nav-container {
+      background: rgba(13, 16, 24, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 50px;
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 800;
+      text-decoration: none;
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 5px;
+    }
+
+    .nav-link {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: var(--transition-fast);
+    }
+
+    .nav-link:hover, 
+    .nav-link.active {
+      color: var(--color-text-primary);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-link.active {
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .mobile-nav-toggle {
+      display: none;
+      color: var(--color-text-primary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    /* ----------------------------------------------------
+       5. HERO SECTION
+       ---------------------------------------------------- */
+    #hero {
+      height: 100vh;
+      min-height: 750px;
+      display: flex;
+      align-items: center;
+      padding-top: 120px;
+      position: relative;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-text {
+      max-width: 700px;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(0, 242, 254, 0.05);
+      border: 1px solid rgba(0, 242, 254, 0.15);
+      border-radius: 30px;
+      color: var(--color-primary);
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 60%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      color: var(--color-text-secondary);
+      font-weight: 300;
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+
+    .hero-description strong {
+      color: var(--color-text-primary);
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    /* KPI Highlights */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      width: 100%;
+    }
+
+    .kpi-card {
+      padding: 20px;
+      text-align: left;
+    }
+
+    .kpi-number {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 5px;
+    }
+
+    .kpi-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-secondary);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* Abstract Visual graphic for Hero right side */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-art {
+      width: 320px;
+      height: 320px;
+      position: relative;
+    }
+
+    .art-circle {
+      position: absolute;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .art-circle-outer {
+      width: 100%;
+      height: 100%;
+      border: 1px dashed rgba(0, 242, 254, 0.2);
+      animation: rotate-clockwise 40s linear infinite;
+    }
+
+    .art-circle-mid {
+      width: 75%;
+      height: 75%;
+      border: 1px solid rgba(79, 172, 254, 0.15);
+      background: rgba(13, 16, 24, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    .art-circle-inner {
+      width: 45%;
+      height: 45%;
+      background: var(--gradient-brand);
+      box-shadow: 0 0 40px rgba(0, 242, 254, 0.4);
+      animation: pulse-glow 4s ease-in-out infinite alternate;
+    }
+
+    .art-element {
+      position: absolute;
+      background: var(--color-accent);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      top: 50%;
+      left: 0;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 10px var(--color-accent);
+      animation: orbit 15s linear infinite;
+    }
+
+    @keyframes rotate-clockwise {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes pulse-glow {
+      0% { transform: translate(-50%, -50%) scale(0.95); box-shadow: 0 0 30px rgba(0, 242, 254, 0.3); }
+      100% { transform: translate(-50%, -50%) scale(1.05); box-shadow: 0 0 50px rgba(0, 242, 254, 0.6); }
+    }
+
+    @keyframes orbit {
+      0% { transform: translate(-50%, -50%) rotate(0deg) translateX(120px) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg) translateX(120px) rotate(-360deg); }
+    }
+
+    /* ----------------------------------------------------
+       6. THE NARRATIVE (SCROLL STORYTELLING)
+       ---------------------------------------------------- */
+    #narrative {
+      background: rgba(6, 7, 10, 0.7);
+    }
+
+    .narrative-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .narrative-card {
+      padding: 30px 24px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .narrative-num {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.05);
+      margin-bottom: 20px;
+      transition: var(--transition-smooth);
+    }
+
+    .narrative-card:hover .narrative-num {
+      color: var(--color-primary);
+      transform: scale(1.1);
+    }
+
+    .narrative-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--color-text-primary);
+    }
+
+    .narrative-card p {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ----------------------------------------------------
+       7. VALUE LEVERS (CASE STUDIES - TABBED)
+       ---------------------------------------------------- */
+    .levers-container {
+      display: grid;
+      grid-template-columns: 0.35fr 0.65fr;
+      gap: 30px;
+      margin-top: 40px;
+      min-height: 480px;
+    }
+
+    .levers-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .lever-tab {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 20px;
+      cursor: pointer;
+      text-align: left;
+      transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lever-tab:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .lever-tab.active {
+      background: rgba(0, 242, 254, 0.05);
+      border-color: var(--color-primary);
+      box-shadow: 0 4px 20px rgba(0, 242, 254, 0.1);
+    }
+
+    .lever-tab-icon {
+      font-size: 1.5rem;
+      color: var(--color-text-muted);
+      transition: var(--transition-fast);
+      width: 32px;
+      text-align: center;
+    }
+
+    .lever-tab.active .lever-tab-icon {
+      color: var(--color-primary);
+    }
+
+    .lever-tab-text h4 {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      margin-bottom: 2px;
+    }
+
+    .lever-tab-text p {
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .lever-content-panel {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative corner gradient */
+    .lever-content-panel::after {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(0, 242, 254, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .lever-panel {
+      display: none;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      height: 100%;
+    }
+
+    .lever-panel.active {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .lever-header {
+      margin-bottom: 30px;
+    }
+
+    .lever-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(243, 156, 18, 0.1);
+      border: 1px solid rgba(243, 156, 18, 0.2);
+      border-radius: 20px;
+      color: var(--color-accent);
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .lever-panel h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 24px;
+      color: #fff;
+    }
+
+    .lever-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .lever-col h5 {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lever-col p {
+      font-size: 0.95rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    .lever-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .lever-impact-box {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .lever-impact-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(0, 242, 254, 0.05);
+      border: 1px solid rgba(0, 242, 254, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-primary);
+      font-size: 1.2rem;
+    }
+
+    .lever-impact-text h6 {
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .lever-impact-text p {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .lever-tech-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .lever-tag {
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 4px 10px;
+      border-radius: 4px;
+      color: var(--color-text-secondary);
+    }
+
+    /* ----------------------------------------------------
+       8. CAREER TIMELINE (VERTICAL INTEGRATION)
+       ---------------------------------------------------- */
+    .timeline-container {
+      position: relative;
+      margin-top: 50px;
+      padding: 20px 0;
+    }
+
+    /* Timeline center track line */
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      height: 100%;
+      width: 2px;
+      background: linear-gradient(to bottom, 
+        rgba(0, 242, 254, 0) 0%,
+        rgba(0, 242, 254, 0.4) 15%,
+        rgba(79, 172, 254, 0.4) 85%,
+        rgba(79, 172, 254, 0) 100%
+      );
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-content {
+      width: 44%;
+      padding: 30px;
+      position: relative;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    /* Timeline Node indicator */
+    .timeline-node {
+      position: absolute;
+      left: 50%;
+      top: 30px;
+      width: 20px;
+      height: 20px;
+      background: var(--bg-base);
+      border: 4px solid var(--color-secondary);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      transition: var(--transition-smooth);
+    }
+
+    .timeline-item:hover .timeline-node {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 15px var(--color-primary);
+      transform: translateX(-50%) scale(1.2);
+    }
+
+    .timeline-date {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .timeline-role {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .timeline-company {
+      font-size: 0.95rem;
+      color: var(--color-text-secondary);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .timeline-points {
+      list-style: none;
+    }
+
+    .timeline-points li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 0.88rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .timeline-points li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--color-primary);
+    }
+
+    /* ----------------------------------------------------
+       9. THE VISION (FUTURE STRATEGY & AI)
+       ---------------------------------------------------- */
+    #vision {
+      background: rgba(6, 7, 10, 0.7);
+    }
+
+    .vision-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .vision-card {
+      padding: 40px 30px;
+      text-align: left;
+    }
+
+    .vision-icon-box {
+      width: 60px;
+      height: 60px;
+      background: rgba(79, 172, 254, 0.05);
+      border: 1px solid rgba(79, 172, 254, 0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-secondary);
+      font-size: 1.6rem;
+      margin-bottom: 24px;
+      transition: var(--transition-smooth);
+    }
+
+    .vision-card:hover .vision-icon-box {
+      color: var(--color-primary);
+      border-color: var(--color-primary);
+      background: rgba(0, 242, 254, 0.08);
+      box-shadow: 0 4px 20px rgba(0, 242, 254, 0.2);
+    }
+
+    .vision-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #fff;
+    }
+
+    .vision-card p {
+      font-size: 0.92rem;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ----------------------------------------------------
+       10. CONTACT & CREDENTIALS
+       ---------------------------------------------------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.45fr 0.55fr;
+      gap: 50px;
+      margin-top: 40px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .info-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .info-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-primary);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .info-text h5 {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .info-text p {
+      font-size: 1.05rem;
+      color: #fff;
+    }
+
+    .info-text a {
+      color: #fff;
+      text-decoration: none;
+      transition: var(--transition-fast);
+    }
+
+    .info-text a:hover {
+      color: var(--color-primary);
+    }
+
+    .cert-section {
+      margin-top: 40px;
+    }
+
+    .cert-title {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+      margin-bottom: 16px;
+    }
+
+    .cert-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .cert-item {
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+    }
+
+    .cert-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--color-text-primary);
+    }
+
+    .cert-issuer {
+      font-size: 0.78rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Executive Message Form */
+    .contact-form-container {
+      padding: 40px;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 28px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--color-primary);
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 0 10px rgba(0, 242, 254, 0.1);
+    }
+
+    .form-label {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-text-muted);
+      font-size: 0.95rem;
+      transition: var(--transition-smooth);
+      pointer-events: none;
+    }
+
+    /* Dynamic label animation */
+    .form-input:focus ~ .form-label,
+    .form-input:not(:placeholder-shown) ~ .form-label {
+      top: -10px;
+      left: 12px;
+      font-size: 0.75rem;
+      color: var(--color-primary);
+      background: var(--bg-base);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Specific adjustment for textarea label */
+    textarea.form-input {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    textarea.form-input ~ .form-label {
+      top: 24px;
+    }
+
+    textarea.form-input:focus ~ .form-label,
+    textarea.form-input:not(:placeholder-shown) ~ .form-label {
+      top: -10px;
+    }
+
+    .form-status {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .form-status.success {
+      color: #2ecc71;
+      display: block;
+    }
+
+    .form-status.error {
+      color: #e74c3c;
+      display: block;
+    }
+
+    /* ----------------------------------------------------
+       11. INNOVATIVE AI NARRATIVE COMPANION (OPTIMA)
+       ---------------------------------------------------- */
+    #optima-companion {
+      position: fixed;
+      right: 40px;
+      bottom: 40px;
+      width: 64px;
+      height: 64px;
+      z-index: 999;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.1s ease-out; /* Damped follow movement */
+      user-select: none;
+    }
+
+    .optima-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 2px dashed rgba(0, 242, 254, 0.4);
+      border-radius: 50%;
+      animation: rotate-clockwise 15s linear infinite;
+      transition: var(--transition-smooth);
+    }
+
+    .optima-core {
+      position: absolute;
+      width: 60%;
+      height: 60%;
+      background: linear-gradient(135deg, var(--color-primary) 0%, #9d4edd 100%);
+      border-radius: 50%;
+      box-shadow: 0 0 25px rgba(0, 242, 254, 0.5);
+      animation: pulse-glow-companion 3s ease-in-out infinite alternate;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-smooth);
+    }
+
+    .optima-core i {
+      color: #fff;
+      font-size: 0.95rem;
+      opacity: 0.85;
+      transition: var(--transition-fast);
+    }
+
+    /* Speech Bubble / Insights Panel */
+    .optima-bubble {
+      position: absolute;
+      right: 80px;
+      bottom: 12px;
+      width: 280px;
+      background: rgba(10, 12, 18, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 14px 18px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transform: translateX(20px) scale(0.95);
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .optima-bubble.active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+
+    .optima-bubble-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      padding-bottom: 4px;
+    }
+
+    .optima-bubble-name {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .optima-bubble-tip {
+      font-size: 0.65rem;
+      color: var(--color-text-muted);
+    }
+
+    .optima-bubble-text {
+      font-size: 0.82rem;
+      color: var(--color-text-primary);
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    @keyframes pulse-glow-companion {
+      0% { transform: scale(0.95); box-shadow: 0 0 20px rgba(0, 242, 254, 0.4); }
+      100% { transform: scale(1.05); box-shadow: 0 0 35px rgba(0, 242, 254, 0.7); }
+    }
+
+    /* ----------------------------------------------------
+       12. FOOTER
+       ---------------------------------------------------- */
+    footer {
+      padding: 40px 8%;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #040508;
+    }
+
+    .footer-text {
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-icon-link {
+      color: var(--color-text-secondary);
+      font-size: 1.1rem;
+      transition: var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .footer-icon-link:hover {
+      color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    /* ----------------------------------------------------
+       13. RESPONSIVE DESIGN (MEDIA QUERIES)
+       ---------------------------------------------------- */
+    @media (max-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 60px;
+      }
+
+      .hero-text {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 600px;
+      }
+
+      .narrative-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .levers-container {
+        grid-template-columns: 1fr;
+      }
+
+      .levers-menu {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 10px;
+      }
+
+      .lever-tab {
+        flex-shrink: 0;
+        min-width: 200px;
+      }
+
+      .timeline-container::before {
+        left: 20px;
+      }
+
+      .timeline-item {
+        flex-direction: column !important;
+        margin-bottom: 40px;
+      }
+
+      .timeline-content {
+        width: calc(100% - 40px);
+        margin-left: 40px;
+        padding: 20px;
+      }
+
+      .timeline-node {
+        left: 20px;
+      }
+
+      .vision-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      #optima-companion {
+        right: 20px;
+        bottom: 20px;
+        width: 50px;
+        height: 50px;
+      }
+
+      .optima-bubble {
+        right: 65px;
+        width: 220px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        top: 0;
+        width: 100%;
+      }
+
+      .nav-container {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        padding: 16px 24px;
+      }
+
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(13, 16, 24, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-color);
+        padding: 20px 24px;
+        gap: 15px;
+      }
+
+      .nav-menu.mobile-active {
+        display: flex;
+      }
+
+      .mobile-nav-toggle {
+        display: block;
+      }
+
+      .hero-title {
+        font-size: 2.6rem;
+      }
+
+      .hero-description {
+        font-size: 1.05rem;
+      }
+
+      .kpi-number {
+        font-size: 1.8rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .lever-body {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .lever-content-panel {
+        padding: 24px;
+      }
+
+      .lever-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .vision-grid {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .narrative-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Lighting Orbs -->
+  <div class="ambient-bg">
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+  </div>
+
+  <!-- Mouse Spotlight Layer -->
+  <div class="spotlight-overlay" id="spotlight"></div>
+
+  <!-- ----------------------------------------------------
+       FLOATING NAVIGATION BAR
+       ---------------------------------------------------- -->
+  <header id="header">
+    <div class="nav-container container">
+      <a href="#hero" class="logo">B. S. BONAM</a>
+      
+      <button class="mobile-nav-toggle" id="nav-toggle" aria-label="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#hero" class="nav-link active">Introduction</a></li>
+        <li><a href="#narrative" class="nav-link">Narrative</a></li>
+        <li><a href="#levers" class="nav-link">Value Levers</a></li>
+        <li><a href="#timeline" class="nav-link">Journey</a></li>
+        <li><a href="#vision" class="nav-link">Vision</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ----------------------------------------------------
+       HERO SECTION
+       ---------------------------------------------------- -->
+  <section id="hero">
+    <div class="container hero-content">
+      <div class="hero-text reveal">
+        <div class="hero-pill">
+          <i class="fa-solid fa-bolt"></i> Operational Excellence to Strategy
+        </div>
+        <h1 class="hero-title">From physical logs to financial strategy.</h1>
+        <p class="hero-description">
+          I am <strong>Bhargava Sai Bonam</strong>, a business optimization professional with <strong>4+ years</strong> of expertise in industrial process operations, digital transformation, and Six Sigma metrics. I translate complex operational data into high-level business strategy.
+        </p>
+        <div class="hero-actions">
+          <a href="#levers" class="btn btn-primary">Analyze Value Levers <i class="fa-solid fa-arrow-trend-up"></i></a>
+          <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        </div>
+        
+        <!-- Animated KPI Counters -->
+        <div class="kpi-grid">
+          <div class="kpi-card glass-card">
+            <div class="kpi-number" data-target="3.2" data-suffix=" Cr" data-prefix="₹">0</div>
+            <div class="kpi-label">Annual savings delivered</div>
+          </div>
+          <div class="kpi-card glass-card">
+            <div class="kpi-number" data-target="40" data-suffix="%">0</div>
+            <div class="kpi-label">Reduction in reporting cycles</div>
+          </div>
+          <div class="kpi-card glass-card">
+            <div class="kpi-number" data-target="4" data-suffix="+ Yrs">0</div>
+            <div class="kpi-label">Plant Operations experience</div>
+          </div>
+          <div class="kpi-card glass-card">
+            <div class="kpi-number" data-target="2500" data-suffix="+">0</div>
+            <div class="kpi-label">TPD Capacity Optimized</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal delay-200">
+        <div class="hero-art">
+          <div class="art-circle art-circle-outer"></div>
+          <div class="art-circle art-circle-mid"></div>
+          <div class="art-circle art-circle-inner"></div>
+          <div class="art-element"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ----------------------------------------------------
+       THE NARRATIVE SECTION
+       ---------------------------------------------------- -->
+  <section id="narrative">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Executive Narrative</span>
+        <h2 class="section-title">The Evolution of Excellence</h2>
+        <p class="section-subtitle">Bridging engineering discipline with financial analytics to drive operational alpha.</p>
+      </div>
+
+      <div class="narrative-grid">
+        <div class="narrative-card glass-card reveal">
+          <div class="narrative-num">01</div>
+          <h3>Operational Grounding</h3>
+          <p>Began on the high-hazard chemical manufacturing floor, managing 2,500+ TPD operations. Developed deep respect for system complexity, safety protocols, and standard operating procedures.</p>
+        </div>
+
+        <div class="narrative-card glass-card reveal delay-100">
+          <div class="narrative-num">02</div>
+          <h3>Analytical Synthesis</h3>
+          <p>Uncovered hidden efficiency gains by mining DCS Historian logs, applying Six Sigma methodologies, and developing mathematical energy models to drive energy-savings metrics.</p>
+        </div>
+
+        <div class="narrative-card glass-card reveal delay-200">
+          <div class="narrative-num">03</div>
+          <h3>Digital Transformation</h3>
+          <p>Replaced fragile paper processes by designing custom digital apps (Power Apps) and automated Power BI metrics, cutting manual plant reporting cycles by 40%.</p>
+        </div>
+
+        <div class="narrative-card glass-card reveal delay-300">
+          <div class="narrative-num">04</div>
+          <h3>Strategic Leadership</h3>
+          <p>Certified under JSW's prestigious XLEAD program (with XLRI Jamshedpur). Now synthesizing business intelligence and leadership training to scale continuous improvement at an enterprise level.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ----------------------------------------------------
+       VALUE LEVERS (CASE STUDIES - TABBED)
+       ---------------------------------------------------- -->
+  <section id="levers">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Case Studies</span>
+        <h2 class="section-title">Strategic Value Levers</h2>
+        <p class="section-subtitle">Tangible examples of transforming operational friction into business value.</p>
+      </div>
+
+      <div class="levers-container reveal">
+        <!-- Interactive Side Tabs Menu -->
+        <div class="levers-menu">
+          <button class="lever-tab active" data-lever="argon">
+            <span class="lever-tab-icon"><i class="fa-solid fa-coins"></i></span>
+            <div class="lever-tab-text">
+              <h4>Argon Loss Reduction</h4>
+              <p>Financial Optimization</p>
+            </div>
+          </button>
+          
+          <button class="lever-tab" data-lever="asu">
+            <span class="lever-tab-icon"><i class="fa-solid fa-mobile-screen-button"></i></span>
+            <div class="lever-tab-text">
+              <h4>'ASU Central' App</h4>
+              <p>Digital Transformation</p>
+            </div>
+          </button>
+          
+          <button class="lever-tab" data-lever="deviation">
+            <span class="lever-tab-icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+            <div class="lever-tab-text">
+              <h4>SOC-SOL Analytics</h4>
+              <p>Risk & Safety Intelligence</p>
+            </div>
+          </button>
+          
+          <button class="lever-tab" data-lever="compressor">
+            <span class="lever-tab-icon"><i class="fa-solid fa-bolt-lightning"></i></span>
+            <div class="lever-tab-text">
+              <h4>Compressor Efficiency</h4>
+              <p>Energy Benchmarking</p>
+            </div>
+          </button>
+          
+          <button class="lever-tab" data-lever="reporting">
+            <span class="lever-tab-icon"><i class="fa-solid fa-chart-pie"></i></span>
+            <div class="lever-tab-text">
+              <h4>Reporting Automation</h4>
+              <p>Business Intelligence</p>
+            </div>
+          </button>
+        </div>
+
+        <!-- Details Content Panels -->
+        <div class="lever-content-panel glass-card">
+          <!-- 1. Argon Loss Reduction -->
+          <div class="lever-panel active" id="panel-argon">
+            <div class="lever-header">
+              <span class="lever-badge">Continuous Improvement</span>
+              <h3>Six Sigma Optimization Eliminates Noble Gas Leaks</h3>
+            </div>
+            <div class="lever-body">
+              <div class="lever-col">
+                <h5><i class="fa-solid fa-circle-question"></i> The Challenge</h5>
+                <p>An Industrial Gases facility was experiencing an undocumented, recurring Argon product loss of 1.1 tons per day (TPD), leaking potential operating margins.</p>
+              </div>
+              <div class="lever-col">
+                <h5><i class="fa-solid fa-gears"></i> Strategic Intervention</h5>
+                <p>Applied Lean Six Sigma DMAIC framework. Analyzed historical process variables via Minitab, performed root-cause analysis, and optimized column pressure/reflux settings.</p>
+              </div>
+            </div>
+            <div class="lever-footer">
+              <div class="lever-impact-box">
+                <div class="lever-impact-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <div class="lever-impact-text">
+                  <h6>Annual recurring impact</h6>
+                  <p>₹3.2 Crore (~$385K USD) Saved</p>
+                </div>
+              </div>
+              <div class="lever-tech-tags">
+                <span class="lever-tag">DMAIC</span>
+                <span class="lever-tag">Minitab</span>
+                <span class="lever-tag">Root Cause Analysis</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. ASU Central App -->
+          <div class="lever-panel" id="panel-asu">
+            <div class="lever-header">
+              <span class="lever-badge">Digital Transformation</span>
+              <h3>Consolidating Shop Floor Data Collection</h3>
+            </div>
+            <div class="lever-body">
+              <div class="lever-col">
+                <h5><i class="fa-solid fa-circle-question"></i> The Challenge</h5>
+                <p>Operators relied on paper-based shift logs, introducing manual transcribing errors and lagging indicators. The leadership lacked clean, real-time status visibility.</p>
+              </div>
+              <div class="lever-col">
+                <h5><i class="fa-solid fa-gears"></i> Strategic Intervention</h5>
+                <p>Developed 'ASU Central', a centralized Microsoft Power Apps tool. Transformed paper workflows into automated mobile log sheets with instant data validation checks.</p>
+              </div>
+            </div>
+            <div class="lever-footer">
+              <div class="lever-impact-box">
+                <div class="lever-impact-icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="lever-impact-text">
+                  <h6>Efficiency Multiplier</h6>
+                  <p>100% Digitized Operations</p>
+                </div>
+              </div>
+              <div class="lever-tech-tags">
+                <span class="lever-tag">Power Apps</span>
+                <span class="lever-tag">Process Digitization</span>
+                <span class="lever-tag">Real-Time Data</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Deviation Analytics -->
+          <div class="lever-panel" id="panel-deviation">
+            <div class="lever-header">
+              <span class="lever-badge">Risk & Compliance</span>
+              <h3>Automated Predictive Alerting for Process Deviations</h3>
+            </div>
+            <div class="lever-body">
+              <div class="lever-col">
+                <h5><i class="fa-solid fa-circle-question"></i> The Challenge</h5>
+                <p>Complex mode changes and plant restarts created critical parameters that could stray without prompt operator awareness, risking shutdowns.</p>
+              </div>
+              <div class="lever-col">
+                <h5><i class="fa-solid fa-gears"></i> Strategic Intervention</h5>
+                <p>Integrated raw DCS Historian data to construct the SOC-SOL Deviation Analytics Dashboard. Configured real-time triggers to send early warning alerts to shift staff.</p>
+              </div>
+            </div>
+            <div class="lever-footer">
+              <div class="lever-impact-box">
+                <div class="lever-impact-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="lever-impact-text">
+                  <h6>Operational Safety</h6>
+                  <p>Zero Lag Critical Alerts</p>
+                </div>
+              </div>
+              <div class="lever-tech-tags">
+                <span class="lever-tag">DCS Historian</span>
+                <span class="lever-tag">Deviation Analytics</span>
+                <span class="lever-tag">Risk Assessment</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Compressor Efficiency -->
+          <div class="lever-panel" id="panel-compressor">
+            <div class="lever-header">
+              <span class="lever-badge">Business Analytics</span>
+              <h3>Compressor Benchmarking Reduces Specific Power</h3>
+            </div>
+            <div class="lever-body">
+              <div class="lever-col">
+                <h5><i class="fa-solid fa-circle-question"></i> The Challenge</h5>
+                <p>Main air compressors are the largest energy cost driver. Without performance baseline metrics, energy waste remained invisible.</p>
+              </div>
+              <div class="lever-col">
+                <h5><i class="fa-solid fa-gears"></i> Strategic Intervention</h5>
+                <p>Modeled compressor energy profiles using Python (Pandas/NumPy) and Excel. Derived specific power metrics (kWh/Nm³) and benchmarked performance curves against plant loads.</p>
+              </div>
+            </div>
+            <div class="lever-footer">
+              <div class="lever-impact-box">
+                <div class="lever-impact-icon"><i class="fa-solid fa-leaf"></i></div>
+                <div class="lever-impact-text">
+                  <h6>Sustainability Metric</h6>
+                  <p>Optimized Specific Power</p>
+                </div>
+              </div>
+              <div class="lever-tech-tags">
+                <span class="lever-tag">Data Modeling</span>
+                <span class="lever-tag">Python (Pandas)</span>
+                <span class="lever-tag">Energy Benchmarking</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Reporting Automation -->
+          <div class="lever-panel" id="panel-reporting">
+            <div class="lever-header">
+              <span class="lever-badge">Business Intelligence</span>
+              <h3>Eliminating Excel Overhead for Plant Leadership</h3>
+            </div>
+            <div class="lever-body">
+              <div class="lever-col">
+                <h5><i class="fa-solid fa-circle-question"></i> The Challenge</h5>
+                <p>Operations teams spent dozens of hours compiling daily and monthly Excel reports, delaying strategic review meetings.</p>
+              </div>
+              <div class="lever-col">
+                <h5><i class="fa-solid fa-gears"></i> Strategic Intervention</h5>
+                <p>Designed and deployed an automated Power BI management dashboard. Synthesized logs from multiple inputs to provide instant MoM and YoY trends.</p>
+              </div>
+            </div>
+            <div class="lever-footer">
+              <div class="lever-impact-box">
+                <div class="lever-impact-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="lever-impact-text">
+                  <h6>Time Savings</h6>
+                  <p>40% Lower Reporting Effort</p>
+                </div>
+              </div>
+              <div class="lever-tech-tags">
+                <span class="lever-tag">Power BI</span>
+                <span class="lever-tag">Automated ETL</span>
+                <span class="lever-tag">Executive Reporting</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ----------------------------------------------------
+       CAREER JOURNEY & EDUCATION TIMELINE
+       ---------------------------------------------------- -->
+  <section id="timeline">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Professional Milestone</span>
+        <h2 class="section-title">The Career Integration</h2>
+        <p class="section-subtitle">Tracing a path of continuous academic progress and expanding leadership responsibilities.</p>
+      </div>
+
+      <div class="timeline-container">
+        <!-- 1. JSWTPML -->
+        <div class="timeline-item reveal">
+          <div class="timeline-node"></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-date">Oct 2024 – Present</span>
+            <h3 class="timeline-role">Deputy Manager | Production Operations</h3>
+            <p class="timeline-company">JSW Techno Projects Management Ltd (JSWTPML) – Bellary</p>
+            <ul class="timeline-points">
+              <li>Lead shift operations for a newly commissioned 2×2063 TPD Air Separation Unit.</li>
+              <li>Analyze plant startup, shutdown, and mode changeover data to prevent process deviations.</li>
+              <li>Translate safety risk assessments into structured, audit-ready safety reports.</li>
+              <li>Streamlined tanker dispatch documentation to improve logistics accuracy.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2. BITS Pilani -->
+        <div class="timeline-item reveal delay-100">
+          <div class="timeline-node"></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-date">2024 – Present</span>
+            <h3 class="timeline-role">Post Graduate Diploma in Business Analytics</h3>
+            <p class="timeline-company">BITS Pilani (Online)</p>
+            <ul class="timeline-points">
+              <li>Formalizing analytics capabilities in Supply Chain, Python Data Science, and Project Management.</li>
+              <li>Bridging mathematical models with practical business decision-making.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. JSW XLRI Certification -->
+        <div class="timeline-item reveal delay-200">
+          <div class="timeline-node"></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-date">2024</span>
+            <h3 class="timeline-role">XLEAD Leadership Certification</h3>
+            <p class="timeline-company">XLRI Business School (Emerging Leaders Initiative)</p>
+            <ul class="timeline-points">
+              <li>Selected for the JSW Group FFL initiative, identifying high-potential professional talent.</li>
+              <li>Trained in cross-functional collaboration, team leading, and executive communication.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 4. JSW Industrial Gases -->
+        <div class="timeline-item reveal delay-300">
+          <div class="timeline-node"></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-date">Aug 2021 – Oct 2024</span>
+            <h3 class="timeline-role">Assistant Manager | Process Optimization & Data Operations</h3>
+            <p class="timeline-company">JSW Industrial Gases Ltd – JSW Steel Ltd, Bellary</p>
+            <ul class="timeline-points">
+              <li>Engineered the Six Sigma project that delivered ₹3.2 Crore in annual savings.</li>
+              <li>Automated KPI reporting using custom Power BI dashboards.</li>
+              <li>Optimized molecular pre-purifier regeneration cycle run times using historical process logs.</li>
+              <li>Conducted energy benchmarking studies on main air compressors.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 5. NIT Warangal -->
+        <div class="timeline-item reveal delay-400">
+          <div class="timeline-node"></div>
+          <div class="timeline-content glass-card">
+            <span class="timeline-date">2017 – 2021</span>
+            <h3 class="timeline-role">Bachelor of Technology – Chemical Engineering</h3>
+            <p class="timeline-company">National Institute of Technology (NIT), Warangal</p>
+            <ul class="timeline-points">
+              <li>Foundational engineering curriculum focused on process modeling and thermodynamics.</li>
+              <li>Graduated from one of India's premier technological institutes.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ----------------------------------------------------
+       THE VISION SECTION (AI & STRATEGY)
+       ---------------------------------------------------- -->
+  <section id="vision">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Future Outlook</span>
+        <h2 class="section-title">Strategic Vision</h2>
+        <p class="section-subtitle">Integrating emerging capabilities to transition from continuous improvement to business transformation.</p>
+      </div>
+
+      <div class="vision-grid">
+        <div class="vision-card glass-card reveal">
+          <div class="vision-icon-box"><i class="fa-solid fa-network-wired"></i></div>
+          <h3>Connected Operations</h3>
+          <p>Replacing data silos with secure, central platforms. By feeding raw PLC/DCS historian metrics directly into enterprise data warehouses, companies can unlock instant, auditable compliance reporting.</p>
+        </div>
+
+        <div class="vision-card glass-card reveal delay-100">
+          <div class="vision-icon-box"><i class="fa-solid fa-brain"></i></div>
+          <h3>AI-Assisted Root Cause</h3>
+          <p>Leveraging predictive models (Python, Scikit-learn) to flag anomalies and process deviations before they cause shutdown failures, changing maintenance from reactive to proactive.</p>
+        </div>
+
+        <div class="vision-card glass-card reveal delay-200">
+          <div class="vision-icon-box"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Lean Business Value</h3>
+          <p>Aligning shop-floor KPIs (like compressor power and yield recovery) directly with corporate cash flow metrics, ensuring every process improvement correlates to EBITDA growth.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ----------------------------------------------------
+       CONTACT & CREDENTIALS
+       ---------------------------------------------------- -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Get in Touch</span>
+        <h2 class="section-title">Initiate Collaboration</h2>
+        <p class="section-subtitle">Discussing leadership roles in Business Excellence, Strategy, or Business Analytics.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Credentials Info Column -->
+        <div class="contact-info reveal">
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div class="info-text">
+              <h5>Email Address</h5>
+              <p><a href="mailto:bhargavasaibonam@gmail.com">bhargavasaibonam@gmail.com</a></p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+            <div class="info-text">
+              <h5>Direct Contact</h5>
+              <p><a href="tel:+919121923299">+91 91219 23299</a></p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="info-text">
+              <h5>Location Base</h5>
+              <p>Guntur, India – 522004</p>
+            </div>
+          </div>
+
+          <!-- Certifications Grid inside contact column -->
+          <div class="cert-section">
+            <h4 class="cert-title">Professional Certifications</h4>
+            <div class="cert-list">
+              <div class="cert-item">
+                <span class="cert-name">XLEAD Leadership Program</span>
+                <span class="cert-issuer">XLRI Jamshedpur</span>
+              </div>
+              <div class="cert-item">
+                <span class="cert-name">Process Safety Management (PSM)</span>
+                <span class="cert-issuer">JSW Certified</span>
+              </div>
+              <div class="cert-item">
+                <span class="cert-name">Advanced Data Analytics</span>
+                <span class="cert-issuer">Google (In Progress)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Contact Form -->
+        <div class="contact-form-container glass-card reveal delay-100">
+          <form id="contact-form">
+            <div class="form-group">
+              <input type="text" id="name" name="name" class="form-input" placeholder=" " required>
+              <label for="name" class="form-label">Full Name</label>
+            </div>
+
+            <div class="form-group">
+              <input type="email" id="email" name="email" class="form-input" placeholder=" " required>
+              <label for="email" class="form-label">Email Address</label>
+            </div>
+
+            <div class="form-group">
+              <input type="text" id="company" name="company" class="form-input" placeholder=" ">
+              <label for="company" class="form-label">Company / Organization</label>
+            </div>
+
+            <div class="form-group">
+              <textarea id="message" name="message" class="form-input" placeholder=" " required></textarea>
+              <label for="message" class="form-label">Strategic Agenda / Message</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              Send Executive Message <i class="fa-solid fa-paper-plane"></i>
+            </button>
+            <div class="form-status" id="form-status"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ----------------------------------------------------
+       OPTIMA COMPANION (SCROLL & HOVER CHARACTER)
+       ---------------------------------------------------- -->
+  <div id="optima-companion" aria-label="AI Operations Advisor">
+    <div class="optima-bubble" id="optima-bubble">
+      <div class="optima-bubble-header">
+        <span class="optima-bubble-name">Optima AI</span>
+        <span class="optima-bubble-tip">Interactive Guide</span>
+      </div>
+      <div class="optima-bubble-text" id="optima-bubble-text">
+        Hello! Scroll to explore Bhargava's digital transformation projects.
+      </div>
+    </div>
+    <div class="optima-ring" id="optima-ring"></div>
+    <div class="optima-core" id="optima-core">
+      <i class="fa-solid fa-microchip"></i>
+    </div>
+  </div>
+
+  <!-- ----------------------------------------------------
+       FOOTER
+       ---------------------------------------------------- -->
+  <footer>
+    <div class="footer-text">
+      &copy; 2026 Bhargava Sai Bonam. All Rights Reserved. Designed for Business Excellence.
+    </div>
+    <div class="footer-links">
+      <a href="mailto:bhargavasaibonam@gmail.com" class="footer-icon-link" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      <a href="tel:+919121923299" class="footer-icon-link" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+      <a href="https://linkedin.com" target="_blank" class="footer-icon-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://github.com" target="_blank" class="footer-icon-link" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    </div>
+  </footer>
+
+  <!-- ----------------------------------------------------
+       JAVASCRIPT INTERACTIONS & ANIMATIONS
+       ---------------------------------------------------- -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // 1. MOBILE MENU TOGGLE
+      const navToggle = document.getElementById('nav-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('mobile-active');
+        const icon = navToggle.querySelector('i');
+        if (navMenu.classList.contains('mobile-active')) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-xmark');
+        } else {
+          icon.classList.remove('fa-xmark');
+          icon.classList.add('fa-bars');
+        }
+      });
+
+      // Close menu when link is clicked (mobile)
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('mobile-active');
+          const icon = navToggle.querySelector('i');
+          icon.classList.remove('fa-xmark');
+          icon.classList.add('fa-bars');
+        });
+      });
+
+      // 2. DYNAMIC MOUSE SPOTLIGHT GLOW
+      const spotlight = document.getElementById('spotlight');
+      window.addEventListener('mousemove', e => {
+        spotlight.style.setProperty('--x', `${e.clientX}px`);
+        spotlight.style.setProperty('--y', `${e.clientY}px`);
+      });
+
+      // 3. INTERSECTION OBSERVER FOR SCROLL REVEAL & NAVIGATION HIGHLIGHT
+      const revealElements = document.querySelectorAll('.reveal');
+      const sections = document.querySelectorAll('section');
+      
+      const revealCallback = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            
+            // If the element has KPI counters, trigger them
+            if (entry.target.classList.contains('hero-text')) {
+              triggerKPIs();
+            }
+            observer.unobserve(entry.target); // Unobserve after revealing once
+          }
+        });
+      };
+
+      const revealObserver = new IntersectionObserver(revealCallback, {
+        root: null,
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+      });
+
+      revealElements.forEach(el => revealObserver.observe(el));
+
+      // Scroll Spy for Navigation Active State & Optima Context Speech
+      const spyCallback = (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach(link => {
+              if (link.getAttribute('href') === `#${id}`) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+
+            // Update Optima Bubble text based on the active section
+            updateOptimaMessage(id);
+          }
+        });
+      };
+
+      const spyObserver = new IntersectionObserver(spyCallback, {
+        root: null,
+        threshold: 0.4,
+        rootMargin: '-10% 0px -50% 0px'
+      });
+
+      sections.forEach(sec => spyObserver.observe(sec));
+
+      // 4. ANIMATED KPI COUNTERS LOGIC
+      let kpiTriggered = false;
+      function triggerKPIs() {
+        if (kpiTriggered) return;
+        kpiTriggered = true;
+        
+        const counters = document.querySelectorAll('.kpi-number');
+        counters.forEach(counter => {
+          const target = parseFloat(counter.getAttribute('data-target'));
+          const prefix = counter.getAttribute('data-prefix') || '';
+          const suffix = counter.getAttribute('data-suffix') || '';
+          const isDecimal = target % 1 !== 0;
+          
+          let count = 0;
+          const duration = 2000; // 2 seconds
+          const frameDuration = 1000 / 60; // 60 FPS
+          const totalFrames = duration / frameDuration;
+          const increment = target / totalFrames;
+          
+          let frame = 0;
+          const timer = setInterval(() => {
+            frame++;
+            count += increment;
+            
+            if (frame >= totalFrames) {
+              clearInterval(timer);
+              counter.textContent = prefix + target + suffix;
+            } else {
+              if (isDecimal) {
+                counter.textContent = prefix + count.toFixed(1) + suffix;
+              } else {
+                counter.textContent = prefix + Math.floor(count) + suffix;
+              }
+            }
+          }, frameDuration);
+        });
+      }
+
+      // 5. CASE STUDY (VALUE LEVER) TAB SWITCHING LOGIC
+      const tabs = document.querySelectorAll('.lever-tab');
+      const panels = document.querySelectorAll('.lever-panel');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const targetLever = tab.getAttribute('data-lever');
+          
+          // Deactivate previous active tabs and panels
+          tabs.forEach(t => t.classList.remove('active'));
+          panels.forEach(p => p.classList.remove('active'));
+          
+          // Activate clicked tab
+          tab.classList.add('active');
+          
+          // Activate corresponding panel
+          const targetPanel = document.getElementById(`panel-${targetLever}`);
+          if (targetPanel) {
+            targetPanel.classList.add('active');
+          }
+        });
+      });
+
+      // 6. CONTACT FORM SUBMISSION (SIMULATED EXECUTIVE WORKFLOW)
+      const contactForm = document.getElementById('contact-form');
+      const formStatus = document.getElementById('form-status');
+
+      contactForm.addEventListener('submit', e => {
+        e.preventDefault();
+        
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Securing Connection... <i class="fa-solid fa-spinner fa-spin"></i>';
+        
+        // Emulate API network latency
+        setTimeout(() => {
+          submitBtn.innerHTML = 'Transmitting Message... <i class="fa-solid fa-satellite-dish fa-spin"></i>';
+          
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+            
+            formStatus.textContent = "Message securely sent. Bhargava will review your strategic inquiry and reply within 24 hours.";
+            formStatus.className = "form-status success";
+            contactForm.reset();
+            
+            // Clear message after 6 seconds
+            setTimeout(() => {
+              formStatus.style.display = 'none';
+            }, 6000);
+            
+          }, 1500);
+        }, 1200);
+      });
+
+      // 7. INNOVATIVE FLOATING COMPANION (OPTIMA) LOGIC
+      const optima = document.getElementById('optima-companion');
+      const optimaBubble = document.getElementById('optima-bubble');
+      const optimaBubbleText = document.getElementById('optima-bubble-text');
+      const optimaRing = document.getElementById('optima-ring');
+      const optimaCore = document.getElementById('optima-core');
+
+      // Scroll speed tracker
+      let lastScrollTop = 0;
+      let scrollTimeout;
+      
+      window.addEventListener('scroll', () => {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        const diff = Math.abs(st - lastScrollTop);
+        lastScrollTop = st <= 0 ? 0 : st;
+        
+        // Dynamic reaction: spin faster and scale during rapid scrolls
+        const spinSpeed = Math.max(0.5, 15 - (diff * 0.2)); // Cap minimum spin time to 0.5s for hyper rotation
+        optimaRing.style.animationDuration = `${spinSpeed}s`;
+        
+        const scaleWarp = Math.min(1.2, 1 + (diff * 0.003));
+        optimaCore.style.transform = `scale(${scaleWarp})`;
+        
+        // Settle animation back to normal after scroll stops
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          optimaRing.style.animationDuration = '15s';
+          optimaCore.style.transform = 'scale(1)';
+        }, 150);
+      });
+
+      // Section-based context messages mapping
+      const sectionMessages = {
+        'hero': "Hello, I'm Optima. I translate Bhargava's operations data into business impact. Scroll to start!",
+        'narrative': "Bhargava's path: starting with physical plants, advancing through analytical metrics, and scaling to business excellence.",
+        'levers': "Inspect the value levers! The Argon recovery project alone delivered ₹3.2 Crore in annual cost savings.",
+        'timeline': "Explore Bhargava's professional trajectory. Highlights include XLRI leadership training and BITS Pilani business analytics.",
+        'vision': "Here is Bhargava's roadmap: connecting plant sensors to cash flow and using Python to forecast process deviations.",
+        'contact': "Ready to talk strategy? Fill in the details, and I will securely route your message to Bhargava's inbox."
+      };
+
+      let currentSection = 'hero';
+      function updateOptimaMessage(sectionId) {
+        if (sectionMessages[sectionId]) {
+          currentSection = sectionId;
+          optimaBubbleText.textContent = sectionMessages[sectionId];
+        }
+      }
+
+      // Hover Interaction: Magnet effect and message display
+      let isHovered = false;
+      optima.addEventListener('mouseenter', () => {
+        isHovered = true;
+        optimaBubble.classList.add('active');
+        optimaRing.style.borderColor = 'var(--color-primary)';
+        optimaCore.style.boxShadow = '0 0 35px var(--color-primary)';
+      });
+
+      optima.addEventListener('mouseleave', () => {
+        isHovered = false;
+        optimaBubble.classList.remove('active');
+        optimaRing.style.borderColor = 'rgba(0, 242, 254, 0.4)';
+        optimaCore.style.boxShadow = '0 0 25px rgba(0, 242, 254, 0.5)';
+        optima.style.transform = 'translate(0px, 0px)';
+        const icon = optimaCore.querySelector('i');
+        icon.style.transform = 'scale(1)';
+      });
+
+      // Magnetic pull following the cursor slightly inside the companion container
+      optima.addEventListener('mousemove', (e) => {
+        if (!isHovered) return;
+        const rect = optima.getBoundingClientRect();
+        const center = {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2
+        };
+        // Compute delta from cursor to center
+        const deltaX = (e.clientX - center.x) * 0.35; //  sensitivity
+        const deltaY = (e.clientY - center.y) * 0.35;
+        
+        optima.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+        
+        // Push the core icon slightly in the direction of the cursor
+        const icon = optimaCore.querySelector('i');
+        icon.style.transform = `translate(${deltaX * 0.2}px, ${deltaY * 0.2}px) scale(1.1)`;
+      });
+
+      // Click Interaction: random lean/analytics quote bubble overlay
+      const executiveQuotes = [
+        "Continuous improvement is better than delayed perfection.",
+        "In God we trust; all others must bring clean data.",
+        "The shop floor holds the truth; the analytics hold the scale.",
+        "Operational efficiency directly drives EBITDA growth.",
+        "Automation without optimization is simply automated waste.",
+        "Six Sigma is not about tools; it is about reducing systemic volatility.",
+        "Digitization is the pipeline; analytics is the refining process."
+      ];
+
+      optima.addEventListener('click', () => {
+        // Trigger impact animation
+        optimaCore.style.transform = 'scale(0.85)';
+        setTimeout(() => {
+          optimaCore.style.transform = 'scale(1.15)';
+          
+          // Select a random quote
+          const randomIndex = Math.floor(Math.random() * executiveQuotes.length);
+          optimaBubbleText.innerHTML = `<strong>Insight:</strong> "${executiveQuotes[randomIndex]}"`;
+          optimaBubble.classList.add('active');
+          
+          setTimeout(() => {
+            optimaCore.style.transform = 'scale(1)';
+          }, 150);
+        }, 100);
+
+        // Keep bubble open for 4 seconds if clicked
+        clearTimeout(optima.bubbleTimeout);
+        optima.bubbleTimeout = setTimeout(() => {
+          if (!isHovered) {
+            optimaBubble.classList.remove('active');
+            // Revert back to section based message
+            updateOptimaMessage(currentSection);
+          }
+        }, 4000);
+      });
+
+    });
+  </script>
+</body>
+</html>
