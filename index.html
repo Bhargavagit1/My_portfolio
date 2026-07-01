@@ -52,13 +52,13 @@
       pointer-events: none;
     }
     /* Top: left → right */
-    #bp-top    { top: 0; left: 0; height: 3px; width: 0%; }
+    #bp-top    { top: 0; left: 0; height: 5px; width: 0%; }
     /* Right: top → bottom */
-    #bp-right  { top: 0; right: 0; width: 3px; height: 0%; background: linear-gradient(180deg, var(--c-accent-2), var(--c-accent)); }
+    #bp-right  { top: 0; right: 0; width: 5px; height: 0%; background: linear-gradient(180deg, var(--c-accent-2), var(--c-accent)); }
     /* Bottom: right → left */
-    #bp-bottom { bottom: 0; right: 0; height: 3px; width: 0%; background: linear-gradient(270deg, var(--c-accent), var(--c-accent-2)); }
+    #bp-bottom { bottom: 0; right: 0; height: 5px; width: 0%; background: linear-gradient(270deg, var(--c-accent), var(--c-accent-2)); }
     /* Left: bottom → top */
-    #bp-left   { bottom: 0; left: 0; width: 3px; height: 0%; background: linear-gradient(0deg, var(--c-accent-2), var(--c-accent)); }
+    #bp-left   { bottom: 0; left: 0; width: 5px; height: 0%; background: linear-gradient(0deg, var(--c-accent-2), var(--c-accent)); }
 
     /* ============================
        ANNOUNCEMENT TICKER
@@ -1127,8 +1127,9 @@
     <div class="container">
       <div class="overview-grid">
         <div class="overview-text">
-          <div class="hero-eyebrow-scroll">Analytics • Strategy • Digital Transformation</div>
+          
           <h2 class="hero-name-scroll">Bhargava <em>Sai</em> Bonam</h2>
+          <div class="hero-eyebrow-scroll">• Analytics • Strategy • Digital Transformation</div>
           <p class="hero-tagline-scroll">Translating operational depth into digital transformation &amp; business excellence strategies.</p>
           <div class="hero-ctas-scroll">
             <a href="#initiatives" class="btn-primary">My Work ↓</a>
@@ -1528,29 +1529,25 @@
     const rgb  = a => `rgb(${a[0]},${a[1]},${a[2]})`;
     const rgba = (a,al) => `rgba(${a[0]},${a[1]},${a[2]},${al})`;
 
-    // Steep sigmoid: text flips sharply around midpoint so it's never
-    // the same tone as the background (which causes invisible text).
-    // k controls steepness — higher = sharper flip.
-    function sigmoid(t, k = 12) {
-      return 1 / (1 + Math.exp(-k * (t - 0.5)));
-    }
-
     function applyTheme(t) {
-      const r    = document.documentElement;
+      const r = document.documentElement;
+
       // Background transitions smoothly
-      const bg   = lC(L.bgP, D.bgP, t);
-      const bgS  = lC(L.bgS, D.bgS, t);
-      // Text flips sharply via sigmoid — contrast is always maintained
-      const tT   = sigmoid(t, 14);   // steep flip for text
-      const tp   = lC(L.tP,  D.tP,  tT);
-      const ts   = lC(L.tS,  D.tS,  tT);
-      const tm   = lC(L.tM,  D.tM,  tT);
-      // Accent/border follow background curve
-      const acc  = lC(L.acc, D.acc, t);
-      const ac2  = lC(L.ac2, D.ac2, t);
-      const tl   = lC(L.tlL, D.tlL, t);
-      const bA   = lerp(0.08, 0.06, t);
-      const sA   = lerp(0.08, 0.6,  t);
+      const bg  = lC(L.bgP, D.bgP, t);
+      const bgS = lC(L.bgS, D.bgS, t);
+
+      // Text is a HARD STEP at t=0.5 — never mid-grey, always fully readable
+      const textT = t >= 0.5 ? 1 : 0;
+      const tp  = lC(L.tP,  D.tP,  textT);
+      const ts  = lC(L.tS,  D.tS,  textT);
+      const tm  = lC(L.tM,  D.tM,  textT);
+
+      // Accent/border follow background
+      const acc = lC(L.acc, D.acc, t);
+      const ac2 = lC(L.ac2, D.ac2, t);
+      const tl  = lC(L.tlL, D.tlL, t);
+      const bA  = lerp(0.08, 0.06, t);
+      const sA  = lerp(0.08, 0.6,  t);
 
       r.style.setProperty('--c-bg-primary',     rgb(bg));
       r.style.setProperty('--c-bg-secondary',   rgb(bgS));
@@ -1560,10 +1557,10 @@
       r.style.setProperty('--c-text-muted',     rgb(tm));
       r.style.setProperty('--c-accent',         rgb(acc));
       r.style.setProperty('--c-accent-2',       rgb(ac2));
-      r.style.setProperty('--c-border',         rgba(tT<0.5?[0,0,0]:[255,255,255], bA));
+      r.style.setProperty('--c-border',         rgba(textT < 0.5 ? [0,0,0] : [255,255,255], bA));
       r.style.setProperty('--c-shadow',         `0 4px 30px ${rgba([0,0,0],sA)}`);
       r.style.setProperty('--c-nav-bg',         rgba(bg, 0.88));
-      r.style.setProperty('--c-nav-border',     rgba(tT<0.5?[0,0,0]:[255,255,255], bA));
+      r.style.setProperty('--c-nav-border',     rgba(textT < 0.5 ? [0,0,0] : [255,255,255], bA));
       r.style.setProperty('--c-timeline-line',  rgb(tl));
       r.style.setProperty('--c-kpi-bg',         rgba(acc, 0.08));
       r.style.setProperty('--c-tag-bg',         rgba(ac2, 0.1));
@@ -1598,8 +1595,8 @@
         document.getElementById('bp-bottom').style.width  = (s3 * 100) + '%';
         document.getElementById('bp-left').style.height   = (s4 * 100) + '%';
 
-        // Theme — transition window: 45%–75% of page scroll (fast, compressed)
-        const t = Math.max(0, Math.min(1, (p - 0.45) / 0.30));
+        // Theme — tiny 6% scroll window so the transition flashes past instantly
+        const t = Math.max(0, Math.min(1, (p - 0.55) / 0.06));
         applyTheme(t);
 
         // Nav
